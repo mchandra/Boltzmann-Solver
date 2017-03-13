@@ -42,6 +42,8 @@ def f_interp(dt, x, v, f):
 
   # Interpolating:
   
+  x_temp             = x_new[N_ghost:-N_ghost, :].copy()
+  
   if(wall_type == "periodic"):
     x_temp = af.select(x_temp<left_boundary,
                        x_temp + length,
@@ -53,9 +55,10 @@ def f_interp(dt, x, v, f):
                        x_temp
                       )
 
-  x_temp             = x_new[N_ghost:-N_ghost, :].copy()
-  interpolant_values = x_new[N_ghost:-N_ghost, :]/step_size + N_ghost
+  interpolant_values = x_temp/step_size + N_ghost
   
+  f = af.Array.as_type(f, af.Dtype.f64)
+
   f_inter[N_ghost:-N_ghost, :] = af.approx1(f, interpolant_values, af.INTERP.CUBIC)
   
   if(wall_type == "dirichlet"):

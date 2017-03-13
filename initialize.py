@@ -89,6 +89,8 @@ if(wall_type == "dirichlet"):
 initial_temperature = af.data.constant(initial_temperature, N_x + 2*N_ghost, N_vel)
 initial_density     = af.data.constant(initial_density, N_x + 2*N_ghost, N_vel)
 
+initial_density = 1 + 0.5 * af.sin(2*np.pi*x)
+
 # Intializing the values for distribution function:
 if(type_distribution_function == "maxwell-boltzmann"):
   f_initial = initial_density * af.sqrt(mass_particle/(2*np.pi*boltzmann_constant*initial_temperature)) * \

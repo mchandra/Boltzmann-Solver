@@ -3,6 +3,8 @@ This file contains the function that returns the spatial bulk velocity variation
 The values which are returned correspond to the local value of bulk velocity at the discretized points.
 """
 
+import arrayfire as af
+
 def calculate_vel_bulk(f, v):
   
   deltav            = af.sum(v[0, 1]-v[0, 0])

@@ -32,6 +32,9 @@ def wall(f, v):
   left_zones  = np.arange(N_ghost)
   right_zones = np.arange((N_x + N_ghost), (N_x + 2 * N_ghost))
 
+  left_zones  = af.to_array(left_zones)
+  right_zones = af.to_array(right_zones)
+
   f[left_zones, :]  = rho_left * np.sqrt(mass_particle/(2*np.pi*boltzmann_constant*T_wall_left)) * \
                       af.exp(-mass_particle*(v[left_zones, :] - bulk_vel_left)**2/(2*boltzmann_constant*T_wall_left))
 

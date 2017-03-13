@@ -3,8 +3,9 @@ This file contains the function that returns the spatial heatflux variation
 The values which are returned correspond to the local value of heatflux at the discretized points.
 """
 
-from bulk_velocity import calculate_vel_bulk
-from density import calculate_density
+from calculate_moments.bulk_velocity import calculate_vel_bulk
+from calculate_moments.density import calculate_density
+import arrayfire as af
 import params
 
 N_vel              = params.N_vel

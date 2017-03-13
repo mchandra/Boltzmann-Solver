@@ -7,9 +7,9 @@ It has been explicitly mentioned when such a scenario arises.
 """
 
 # Setting velocity and spatial grid points
-N_x     = 6
+N_x     = 501
 N_ghost = 3
-N_vel   = 11
+N_vel   = 101
 
 # Boundaries of domain
 left_boundary  = 0
@@ -20,7 +20,7 @@ mass_particle      = 1.0
 boltzmann_constant = 1.0
 
 # Scattering time scale
-tau   = 1.0
+tau     = 0.01
 # Magnitude of maximum velocity
 vel_max = 1.0
 
@@ -29,11 +29,11 @@ vel_max = 1.0
 # The discretized velocity is used in solving for the distribution function. 
 
 # Time Parameters for the simulation:
-dt         = 0.05 # Size of the time-step
-final_time = 3.0
+dt         = 0.01 # Size of the time-step
+final_time = 5.0
 
 # Setting up the initial temperature and density in the domain:
-initial_temperature = 1.5 
+initial_temperature = 1.0 
 initial_density     = 1.0
 
 # Note that the above can only hold true when a constant value of density and temperature prevails throughout 
@@ -48,7 +48,7 @@ type_distribution_function = "maxwell-boltzmann"
 # "dirichlet"     - Sets the wall as a with conditions specified(can be used to set thermal B.C's)
 # "periodic"      - Sets the walls to behave as a periodic B.C
 
-wall_type = "dirichlet"
+wall_type = "periodic"
 
 if(wall_type == "dirichlet"):
   rho_left  = 1.0

@@ -120,12 +120,12 @@ for time_index, t0 in enumerate(time):
     
   f_current = wall(f_new, v)
   
-  density_data[time_index]     = af.sum(calculate_density(f_current, v)[N_ghost:-N_ghost])/N_x
+  density_data[time_index]     = af.max(calculate_density(f_current, v)[N_ghost:-N_ghost])/N_x
   v_bulk_data[time_index]      = af.sum(calculate_vel_bulk(f_current, v)[N_ghost:-N_ghost])/N_x
   temperature_data[time_index] = af.sum(calculate_temperature(f_current, v)[N_ghost:-N_ghost])/N_x
   heatflux_data[time_index]    = af.sum(calculate_heat_flux(f_current, v)[N_ghost:-N_ghost])/N_x
 
-  if(time_index%1000 == 0):
+  if(time_index%100 == 0):
     h5f = h5py.File('data_files/timestepped_data/solution_'+str(time_index)+'.h5', 'w')
 
     h5f.create_dataset('f'          , data = f_current)

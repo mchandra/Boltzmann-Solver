@@ -23,6 +23,9 @@ def wall(f, v):
   left_zones  = np.arange(N_ghost)
   right_zones = np.arange((N_x + N_ghost), (N_x + 2 * N_ghost))  
 
+  left_zones  = af.to_array(left_zones)
+  right_zones = af.to_array(right_zones)
+  
   f[left_zones, :]  = f[N_x - 2 + N_ghost - left_zones, :]
   f[right_zones, :] = f[right_zones - N_x + 1 , :]
 
